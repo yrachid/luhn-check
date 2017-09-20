@@ -1,4 +1,4 @@
-const {reduceToBoolean, firstOf} = require('./common')
+const {accumulators, firstOf} = require('./common')
 
 const identifier = (cardData) => {
 
@@ -8,7 +8,7 @@ const identifier = (cardData) => {
 
     const byId =
       (cardType) =>
-        reduceToBoolean(cardType.ids, (id) => firstSliceOf(number).startsWith(id))
+        accumulators().boolean(cardType.ids, (id) => firstSliceOf(number).startsWith(id))
 
     const byLength =
       (cardType) => cardType.lengths.includes(number.length())

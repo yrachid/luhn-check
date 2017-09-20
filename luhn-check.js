@@ -1,3 +1,5 @@
+const {accumulators} = require('./common')
+
 const toLuhnNumber = (reversedCardNumber) => {
 
   const luhnDouble = (value, index) => {
@@ -14,10 +16,7 @@ const toLuhnNumber = (reversedCardNumber) => {
     return odd(index) ? luhnLimit(double(value)) : value
   }
 
-  const summing =
-    (acummulated, value) => acummulated + value
-
-  return reversedCardNumber.map(luhnDouble).reduce(summing)
+  return accumulators().int(reversedCardNumber.map(luhnDouble))
 }
 
 const isValid =

@@ -1,10 +1,10 @@
 const cardData = () => {
 
-  const type =
-    (name, ids, lengths) => ({name, ids, lengths})
-
   const unknown =
     () => ({name: 'UNKNOWN'})
+
+  const type =
+    (name, ids, lengths) => ({name, ids, lengths})
 
   const types =
     () => [

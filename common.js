@@ -10,7 +10,12 @@ const toBoolean =
 const toInt =
   () => (element) => parseInt(element)
 
-const reduceToBoolean =
-  (array, callback, initialValue = false) => array.reduce(toBoolean(callback), initialValue)
+const toSum =
+  () => (accumulator, element) => accumulator + element
 
-module.exports = {firstOf, reduceToBoolean, identity, toInt}
+const accumulators = () => ({
+  int: (array) => array.reduce(toSum(), 0),
+  boolean: (array, callback, initialValue = false) => array.reduce(toBoolean(callback), initialValue)
+})
+
+module.exports = {firstOf, accumulators, identity, toInt}
