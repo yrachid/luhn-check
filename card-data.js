@@ -1,13 +1,10 @@
 const cardData = () => {
 
-  const stereotype =
-    (id, length) => ({id, length})
-
   const type =
-    (name, id, length) => ({name, type: stereotype(id, length)})
+    (name, ids, lengths) => ({name, ids, lengths})
 
   const unknown =
-    () => 'UNKNOWN'
+    () => ({name: 'UNKNOWN'})
 
   const types =
     () => [

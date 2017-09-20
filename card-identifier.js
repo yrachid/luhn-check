@@ -1,36 +1,28 @@
 const identifier = (cardData) => {
 
-  const matching = (slice, numberLength) => (cardData) => {
-
-    const id = (ids) => {
-      const sliceMatches = (id) => slice.startsWith(id)
-
-      const containsSlice = (found, anId) => found || sliceMatches(anId)
-
-      return ids.reduce(containsSlice, false)
-    }
-
-    const length = (typeLength) => typeLength.includes(numberLength)
-
-    return id(cardData.type.id) && length(cardData.type.length)
-  }
-
-  const identify = (cardNumber) => {
-    const toName =
-      (data) => data.name
-
-    const keepingName =
-      (kept, name) => name || kept
-
-    const firstSlice =
+  const byIdAndLength = (number) => {
+    const firstSliceOf =
       (cardNumber) => cardNumber.slices()[0]
 
-    return cardData
-      .types()
-      .filter(matching(firstSlice(cardNumber), cardNumber.length()))
-      .map(toName)
-      .reduce(keepingName, cardData.unknown())
+    const INITIAL_VALUE = false
+
+    const byId =
+      (cardType) =>
+        cardType.ids.reduce((hasMatch, anId) => hasMatch || firstSliceOf(number).startsWith(anId), INITIAL_VALUE)
+
+    const byLength =
+      (cardType) => cardType.lengths.includes(number.length())
+
+    return (cardType) => byId(cardType) && byLength(cardType)
   }
+
+  const identify =
+    (cardNumber) =>
+      (cardData
+        .types()
+        .find(byIdAndLength(cardNumber))
+        || cardData.unknown())
+      .name
 
   return {identify}
 }

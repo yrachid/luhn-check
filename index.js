@@ -18,17 +18,12 @@ const americanExpress =
 const rubyQuizSampleCard =
   () => cardNumber('4408 0412 3456 7893')
 
-console.log(
-  `Card: ${identifier(data()).identify(visa())} IsValid: ${luhnCheck().validate(visa())}`)
+const print = (card) => {
+  console.log(`Card: ${identifier(data()).identify(card())}`)
+  console.log(`   Valid: ${luhnCheck().validate(card())}`)
+  console.log('')
+}
 
-console.log(
-  `Card: ${identifier(data()).identify(masterCard())} IsValid: ${luhnCheck().validate(masterCard())}`)
-
-console.log(
-  `Card: ${identifier(data()).identify(invalidCard())} IsValid: ${luhnCheck().validate(invalidCard())}`)
-
-console.log(
-  `Card: ${identifier(data()).identify(americanExpress())} IsValid: ${luhnCheck().validate(americanExpress())}`)
-
-console.log(
-  `Card: ${identifier(data()).identify(rubyQuizSampleCard())} IsValid: ${luhnCheck().validate(rubyQuizSampleCard())}`)
+Array
+  .of(visa, masterCard, invalidCard, americanExpress, rubyQuizSampleCard)
+  .forEach(print)

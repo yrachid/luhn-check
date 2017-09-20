@@ -12,7 +12,7 @@ const number = (raw) => {
     () => raw.replace(allBlankSpaces(), noSpace())
 
   const toArray =
-    () => digitsOnly().split(noSpace())
+    () => Array.from(digitsOnly())
 
   const length =
     () => digitsOnly().length
