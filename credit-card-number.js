@@ -1,3 +1,5 @@
+const {toInt} = require('./common')
+
 const number = (raw) => {
   const allBlankSpaces =
     () => /\s/g
@@ -9,24 +11,18 @@ const number = (raw) => {
     () => ''
 
   const digitsOnly =
-    () => raw.replace(allBlankSpaces(), noSpace())
-
-  const toArray =
-    () => Array.from(digitsOnly())
+    (raw) => raw.replace(allBlankSpaces(), noSpace())
 
   const length =
-    () => digitsOnly().length
+    (raw) => () => digitsOnly(raw).length
 
   const slices =
-    () => raw.split(blankSpace())
+    (raw) => () => raw.split(blankSpace())
 
-  const calculable = () => {
-    const toInt = (numericString) => parseInt(numericString)
+  const calculable =
+    (raw) => () => Array.from(digitsOnly(raw)).map(toInt())
 
-    return toArray().map(toInt)
-  }
-
-  return {length, calculable, slices}
+  return { length: length(raw), calculable: calculable(raw), slices: slices(raw) }
 }
 
 module.exports = number

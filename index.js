@@ -10,7 +10,7 @@ const masterCard =
   () => cardNumber('5500 0000 0000 0004')
 
 const invalidCard =
-  () => cardNumber('5809 0000 0000 0010')
+  () => cardNumber('5809 0000 0006 0010')
 
 const americanExpress =
   () => cardNumber('3400 0000 0000 009')

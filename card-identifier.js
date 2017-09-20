@@ -1,14 +1,14 @@
+const {reduceToBoolean, firstOf} = require('./common')
+
 const identifier = (cardData) => {
 
-  const byIdAndLength = (number) => {
+  const byIdAndLengthOf = (number) => {
     const firstSliceOf =
-      (cardNumber) => cardNumber.slices()[0]
-
-    const INITIAL_VALUE = false
+      (cardNumber) => firstOf(cardNumber.slices()) || ''
 
     const byId =
       (cardType) =>
-        cardType.ids.reduce((hasMatch, anId) => hasMatch || firstSliceOf(number).startsWith(anId), INITIAL_VALUE)
+        reduceToBoolean(cardType.ids, (id) => firstSliceOf(number).startsWith(id))
 
     const byLength =
       (cardType) => cardType.lengths.includes(number.length())
@@ -20,7 +20,7 @@ const identifier = (cardData) => {
     (cardNumber) =>
       (cardData
         .types()
-        .find(byIdAndLength(cardNumber))
+        .find(byIdAndLengthOf(cardNumber))
         || cardData.unknown())
       .name
 
