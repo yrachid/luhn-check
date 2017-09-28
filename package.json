@@ -4,6 +4,9 @@
   "main": "index.js",
   "repository": "git@github.com:othman853/luhn-check.git",
   "license": "MIT",
+  "scripts": {
+    "test": "NODE_PATH=./src:./test ./node_modules/.bin/ava"
+  },
   "devDependencies": {
     "ava": "^0.22.0"
   }

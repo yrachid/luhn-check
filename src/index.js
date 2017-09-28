@@ -1,7 +1,7 @@
 const data = require('./card-data')
 const identifier = require('./card-identifier')
 const luhnCheck = require('./luhn-check')
-const cardNumber = require('./credit-card-number')
+const cardNumber = require('./card-number')
 
 const visa =
   () => cardNumber('4111 1111 1111 1111')

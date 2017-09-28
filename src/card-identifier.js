@@ -1,4 +1,4 @@
-const {accumulators, firstOf} = require('./common')
+const {accumulators, firstOf} = require('common')
 
 const identifier = (cardData) => {
 
